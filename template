@@ -1,0 +1,73 @@
+#!/bin/bash
+set -ueo pipefail
+set -x
+
+pkgs=(
+  Signal-Desktop
+  base-devel
+  bash-completion
+  byobu
+  cargo
+  chromium
+  curl
+  docker
+  flameshot
+  font-awesome5
+  gimp
+  git
+  github-cli
+  gnucash
+  gnupg
+  gnupg2
+  gnupg2-scdaemon
+  go
+  graphviz
+  gst-plugins-good1
+  htop
+  i3
+  i3status-rust
+  imv
+  iotop
+  jq
+  jsonnet
+  keepassxc
+  keybase-desktop
+  krita
+  libreoffice
+  mpv
+  neovim
+  nerd-fonts
+  nodejs
+  pavucontrol
+  pinentry-gtk
+  plantuml
+  powertop
+  python
+  python-devel
+  python3
+  python3-devel
+  python3-neovim
+  qemu-ga
+  rclone
+  restic
+  rofi
+  rust
+  socklog-void
+  spice-vdagent
+  starship
+  syncthing
+  tlp
+  tree
+  vlc
+  void-repo-nonfree
+  vsv
+  wget
+  xev
+  xrandr
+  ykpers
+  yubikey-manager
+)
+
+flavor=cinnamon
+
+bash -x ./build-x86-images.sh -a x86_64 -b $flavor -p "${pkgs[*]}"

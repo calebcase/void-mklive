@@ -22,8 +22,14 @@ if ! grep -q ${USERSHELL} ${NEWROOT}/etc/shells ; then
     echo ${USERSHELL} >> ${NEWROOT}/etc/shells
 fi
 
+# Mount host directories.
+chroot ${NEWROOT} mount -t virtiofs home /home
+
+# Configure timezone.
+chroot ${NEWROOT} ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+
 # Create new user and remove password. We'll use autologin by default.
-chroot ${NEWROOT} useradd -m -c $USERNAME -G audio,video,wheel -s $USERSHELL $USERNAME
+chroot ${NEWROOT} useradd -m -c $USERNAME -G audio,video,wheel,docker -s $USERSHELL $USERNAME
 chroot ${NEWROOT} passwd -d $USERNAME >/dev/null 2>&1
 
 # Setup default root/user password (voidlinux).

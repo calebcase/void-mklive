@@ -41,7 +41,9 @@ fi
 # Configure lxdm autologin.
 if [ -r ${NEWROOT}/etc/lxdm/lxdm.conf ]; then
     sed -e "s,.*autologin.*=.*,autologin=$USERNAME," -i ${NEWROOT}/etc/lxdm/lxdm.conf
-    if [ -x ${NEWROOT}/usr/bin/enlightenment_start ]; then
+    if [ -x ${NEWROOT}/usr/bin/i3 ]; then
+        sed -e "s,.*session.*=.*,session=/usr/bin/i3," -i ${NEWROOT}/etc/lxdm/lxdm.conf
+    elif [ -x ${NEWROOT}/usr/bin/enlightenment_start ]; then
         sed -e "s,.*session.*=.*,session=/usr/bin/enlightenment_start," -i ${NEWROOT}/etc/lxdm/lxdm.conf
     elif [ -x ${NEWROOT}/usr/bin/startxfce4 ]; then
         sed -e "s,.*session.*=.*,session=/usr/bin/startxfce4," -i ${NEWROOT}/etc/lxdm/lxdm.conf
@@ -49,8 +51,6 @@ if [ -r ${NEWROOT}/etc/lxdm/lxdm.conf ]; then
         sed -e "s,.*session.*=.*,session=/usr/bin/mate-session," -i ${NEWROOT}/etc/lxdm/lxdm.conf
     elif [ -x ${NEWROOT}/usr/bin/cinnamon-session ]; then
         sed -e "s,.*session.*=.*,session=/usr/bin/cinnamon-session," -i ${NEWROOT}/etc/lxdm/lxdm.conf
-    elif [ -x ${NEWROOT}/usr/bin/i3 ]; then
-        sed -e "s,.*session.*=.*,session=/usr/bin/i3," -i ${NEWROOT}/etc/lxdm/lxdm.conf
     elif [ -x ${NEWROOT}/usr/bin/startlxde ]; then
         sed -e "s,.*session.*=.*,session=/usr/bin/startlxde," -i ${NEWROOT}/etc/lxdm/lxdm.conf
     elif [ -x ${NEWROOT}/usr/bin/startlxqt ]; then

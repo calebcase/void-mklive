@@ -30,7 +30,7 @@ trap 'error_out $? $LINENO' INT TERM 0
 umask 022
 
 readonly REQUIRED_PKGS="base-files libgcc dash coreutils sed tar gawk syslinux grub-i386-efi grub-x86_64-efi squashfs-tools xorriso"
-readonly INITRAMFS_PKGS="binutils xz device-mapper dhclient dracut-network openresolv"
+readonly INITRAMFS_PKGS="binutils xz device-mapper dhclient dracut-network openresolv lz4"
 readonly PROGNAME=$(basename "$0")
 
 info_msg() {
@@ -317,8 +317,8 @@ ARCH=$(xbps-uhelper arch)
 : ${XBPS_HOST_CACHEDIR:="$(pwd -P)"/xbps-cachedir-${ARCH}}
 : ${KEYMAP:=us}
 : ${LOCALE:=en_US.UTF-8}
-: ${INITRAMFS_COMPRESSION:=xz}
-: ${SQUASHFS_COMPRESSION:=xz}
+: ${INITRAMFS_COMPRESSION:=lz4}
+: ${SQUASHFS_COMPRESSION:=lz4}
 : ${BASE_SYSTEM_PKG:=base-system}
 : ${BOOT_TITLE:="Void Linux"}
 

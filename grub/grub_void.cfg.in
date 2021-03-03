@@ -1,4 +1,6 @@
 
+set default=1
+set timeout=0
 set pager="1"
 set locale_dir="(${voidlive})/boot/grub/locale"
 
